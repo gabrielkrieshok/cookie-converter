@@ -4,7 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import Buefy from 'buefy'
 import Vuelidate from 'vuelidate'
-import 'buefy/lib/buefy.css'
 
 Vue.config.productionTip = false
 
