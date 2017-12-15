@@ -60,6 +60,14 @@ module.exports = {
         }
       },
       {
+         test: /\.(ico)$/,
+         exclude: /node_modules/,
+         loader:'file-loader',
+         options: {
+          name: '[name].[ext]'
+         }
+      },
+      {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
