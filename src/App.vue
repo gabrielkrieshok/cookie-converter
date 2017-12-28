@@ -2,74 +2,86 @@
 <div id="app">
 
 <section class="hero is-primary">
-  <!-- Hero head: will stick at the top -->
-<div class="hero-head">
-
-</div>
-
-  <!-- Hero content: will be in the middle -->
 <div class="hero-body">
   <div class="container has-text-centered">
+    <div class="column is-10 is-offset-1">
 
     <img src="./assets/cookie.svg" />
-    <h1 class="title is-size-1" style="margin-top:30px;">
-      Depressing Thin Mint Equivalency Calculator
+    <h1 id="headline" class="title is-size-1">
+      Depressing Cookie Calorie Converter
     </h1>
+    <h1 class="subtitle is-size-5">
+      Not affiliated or associated with <strong><a href="http://www.girlscouts.org/en/cookies/all-about-cookies/Meet-the-Cookies.html">Girl Scout Thin Mint Cookies</a></strong> — but those are objectively the most delicious cookies.
+    </h1>
+
     <div class="column is-4 is-offset-4">
+      <div class="form-group" v-bind:class="{ 'form-group--error': $v.cookies.$error }">
+        <input class="input is-large form__input" v-model.trim="cookiesInput" type="number" @blur="$v.cookies.$touch()" @input="handleInput" placeholder="Cookies">
+      </div>
 
-      <div class="form-group" v-bind:class="{ 'form-group--error': $v.cookies.$error }" style="margin-bottom: 30px;">
-    <input class="input is-large form__input" v-model.trim="cookiesInput" type="number" @blur="$v.cookies.$touch()" @input="handleInput" placeholder="number of cookies">
-  </div><span class="form-group__message" v-if="!$v.cookies.between">Must be between {{$v.cookies.$params.between.min}} and {{$v.cookies.$params.between.max}}</span>
+      <span class="form-group__message" >Enter a number between 1 and 10,000
+      </span>
 
-    <div class="column is-10 is-offset-1">
-      <span v-for="sleeve in sleeves" :key="sleeve.id" v-if="sleeve < 4"><img src="./assets/sleeve.svg"></span>
-      <span v-for="singleCookie in singleCookies" :key="singleCookie.id" v-if="singleCookie <18"><img width="50" src="./assets/cookie.svg"></span>
+      <div id="cookies" class="column is-10 is-offset-1">
+        <transition-group name="slide-fade">
+          <span v-for="sleeve in sleeves" :key="sleeve"><img src="./assets/sleeve.svg" style="vertical-align: top;"/>
+          </span>
+        </transition-group>
+      </div>
+
+      <div class="column is-10 is-offset-1">
+        <transition-group name="slide-fade">
+          <span v-for="singleCookie in singleCookies" :key="singleCookie" v-if="singleCookie <18"><img width="50" src="./assets/cookie.svg" style="vertical-align: top;">
+          </span>
+        </transition-group>
+      </div>
     </div>
+    <transition name="long">
+      <h1 class="subtitle is-size-4" v-show="cookiesInput>0">Weighing in at <strong>{{ caloriesDisplay }}</strong> calories, it will take this long [<span class="is-size-5"><a href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities">source</a></span>] of one of these activities to burn off ...
+      </h1> 
+    </transition>
 
-    <h1 class="title is-size-2" v-show="cookiesInput>0">{{ caloriesDisplay }} Calories</h1>
-    <!-- <h2 class="subtitle">Sleeves: {{ sleeves }}</h2> -->
-    <!-- <h2 class="subtitle">Single Cookies: {{ singleCookies }}</h2> -->
-    </div>
-  <transition name="slide-fade">
 
-<nav class="level" v-show="cookiesInput>0">
-
-      <div class="level-item has-text-centered">
-    <div>
-      <p class="heading is-size-2">🏃</p>
-      <p class="heading">Running</p>
-      <p class="title">{{ running }} Minutes</p>
+      <nav class="level" v-show="cookiesInput>0">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading is-size-2">🏃</p>
+            <p class="heading">Running</p>
+            <p class="title is-size-4">{{ running }} Minutes</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading is-size-2">🏊</p>
+            <p class="heading">Swimming</p>
+            <p class="title is-size-4">{{ swimming }} Minutes</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading is-size-2">🧘</p>
+            <p class="heading">Yoga</p>
+            <p class="title is-size-4">{{ yoga }} Minutes</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading is-size-2">💺</p>
+            <p class="heading">Sitting</p>
+            <p class="title is-size-4">{{ sitting }} Minutes</p>
+          </div>
+        </div>
+      </nav>
     </div>
   </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="heading is-size-2">🏊</p>
-      <p class="heading">Swimming</p>
-      <p class="title">{{ swimming }} Minutes</p>
-    </div>
-  </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="heading is-size-2">🧘</p>
-      <p class="heading">Yoga</p>
-      <p class="title">{{ yoga }} Minutes</p>
-    </div>
-  </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <p class="heading is-size-2">💺</p>
-      <p class="heading">Sitting</p>
-      <p class="title">{{ sitting }} Minutes</p>
-    </div>
-  </div>
-</nav>
-</transition>
-  </div>
-
-
-<br /><br /><br /><br /><br /><br />
-
 </div>
+  <div class="hero-foot">
+    <div class="container">
+      <div class="column is-10 is-offset-1 has-text-centered">
+        <h1 class="title is-size-6">Made with ♥ by <a href="https://gabrielkrieshok.com">Gabriel Krieshok</a> as a way to learn <a href="https://vuejs.org">Vue.js</a>, hosted on <a href="https://github.com/gabrielkrieshok/mint">Github</a>.</h1>
+      </div>
+    </div>
+  </div>
 </section>
 </div>
 </template>
@@ -81,50 +93,51 @@ export default {
   name: 'app',
   data () {
     return {
-      cookiesInput: null
+      cookiesInput: null,
+      cookiesInputCleaned: null
     }
   },
   computed: {
     singleCookies: function () {
-      var a = this.cookiesInput % 18
+      var a = this.cookiesInputCleaned % 18
       return a
     },
     caloriesCalculator: function () {
-      return this.cookiesInput * 40
+      return this.cookiesInputCleaned * 40
     },
     caloriesDisplay: function () {
       return this.caloriesCalculator.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
     sleeves: function () {
-      return Math.floor(this.cookiesInput / 18)
+      return Math.floor(this.cookiesInputCleaned / 18)
     },
     running: function () {
-      return (this.caloriesCalculator / 6.67).toFixed(0)
+      return (this.caloriesCalculator / 6.67).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
     swimming: function () {
-      return (this.caloriesCalculator / 8.87).toFixed(0)
+      return (this.caloriesCalculator / 8.87).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
     yoga: function () {
-      return (this.caloriesCalculator / 5.93).toFixed(0)
+      return (this.caloriesCalculator / 5.93).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
     sitting: function () {
-      return (this.caloriesCalculator / 1.67).toFixed(0)
+      return (this.caloriesCalculator / 1.67).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
   },
   validations: {
     cookies: {
-      between: between(0, 1000)
+      between: between(0, 10000)
     }
   },
   methods: {
     handleInput: function (event) {
       var value = Number(event.target.value)
-      if (value > 1000) {
-        this.cookiesInput = 1000
+      if (value > 10000) {
+        this.cookiesInput = 10000
       } else if (value < 0 || Number.isNaN(value)) {
-        this.cookiesInput = 0
+        this.cookiesInput = null
       } else {
-        this.cookiesInput2 = this.cookiesInput
+        this.cookiesInputCleaned = this.cookiesInput
       }
     }
   }
@@ -171,15 +184,49 @@ html {
   background-color: $primary;
 }
 
+.title {
+  margin-top: 30px;
+}
+
+#headline {
+  margin-bottom: 50px;
+}
+
+.form-group {
+  margin-bottom: 0px;
+}
+
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 1s ease;
 }
 .slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 1s ease;
 }
+
+.long-enter-active, .long-leave-active {
+  transition: opacity 5s;
+}
+
+.long-enter, .long-leave-leave-to {
+  opacity: 0;
+}
+
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
+  transform: translateX(0px);
   opacity: 0;
+}
+
+.underline {
+  text-decoration: underline dotted;
+}
+
+#cookies {
+  margin-top: 30px;
+}
+
+a {
+  border-bottom: 1px dashed #fff;
+  padding-bottom: 2px;
 }
 </style>

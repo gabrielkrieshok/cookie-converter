@@ -1,7 +1,7 @@
 {
-  "name": "mint2",
+  "name": "cookie-converter",
   "version": "1.0.0",
-  "description": "A thin mint project",
+  "description": "A depressing cookie calorie converter",
   "author": "Gabriel Krieshok <gabriel.krieshok@gmail.com>",
   "private": true,
   "scripts": {
