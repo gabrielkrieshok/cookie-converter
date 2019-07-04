@@ -78,7 +78,7 @@
   <div class="hero-foot">
     <div class="container">
       <div class="column is-10 is-offset-1 has-text-centered">
-        <h1 class="title is-size-6">Made with ♥ by <a href="https://gabrielkrieshok.com">Gabriel Krieshok</a> as a way to learn <a href="https://vuejs.org">Vue.js</a>, hosted on <a href="https://github.com/gabrielkrieshok/mint">Github</a>.</h1>
+        <h1 class="title is-size-6">Made with ♥ by <a href="https://gabrielkrieshok.com">Gabriel Krieshok</a> as a way to learn <a href="https://vuejs.org">Vue.js</a>, hosted on <a href="https://github.com/gabrielkrieshok/cookie-converter">Github</a>.</h1>
       </div>
     </div>
   </div>
