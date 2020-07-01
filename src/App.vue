@@ -31,7 +31,7 @@
 
       <div class="column is-10 is-offset-1">
         <transition-group name="slide-fade">
-          <span v-for="singleCookie in singleCookies" :key="singleCookie" v-if="singleCookie <18"><img width="50" src="./assets/cookie.svg" style="vertical-align: top;">
+          <span v-for="singleCookie in singleCookies" :key="singleCookie"><img width="50" src="./assets/cookie.svg" style="vertical-align: top;">
           </span>
         </transition-group>
       </div>
