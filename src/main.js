@@ -4,10 +4,16 @@ import Vue from 'vue'
 import App from './App'
 import Buefy from 'buefy'
 import Vuelidate from 'vuelidate'
+import VueAnalytics from 'vue-analytics'
+
 
 Vue.config.productionTip = false
 
 Vue.use(Vuelidate)
+
+Vue.use(VueAnalytics, {
+  id: 'UA-180925094-1'
+})
 
 Vue.use(Buefy, {
   defaultIconPack: 'fa'
